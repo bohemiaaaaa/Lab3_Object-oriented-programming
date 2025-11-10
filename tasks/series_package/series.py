@@ -31,13 +31,13 @@ class Series(ABC):
         pass
 
     @abstractmethod
-    def read(self, prompt: str = "") -> None:
-        """Ввод параметров прогрессии"""
+    def edit(self) -> None:
+        """Редактирование параметров прогрессии через консоль"""
         pass
 
     @abstractmethod
-    def display(self) -> None:
-        """Вывод параметров прогрессии"""
+    def __str__(self) -> str:
+        """Строковое представление прогрессии"""
         pass
 
 
@@ -74,20 +74,17 @@ class Linear(Series):
         a_n = self.get_element(n)
         return (n + 1) * (self._a0 + a_n) / 2
 
-    def read(self, prompt: str = "") -> None:
-        """Ввод параметров арифметической прогрессии"""
-        if prompt:
-            print(prompt)
-
+    def edit(self) -> None:
+        """Редактирование параметров арифметической прогрессии"""
         try:
             self._a0 = float(input("Введите первый элемент a0: "))
             self._d = float(input("Введите разность d: "))
         except ValueError:
             raise ValueError("Некорректный ввод. Ожидаются числа.")
 
-    def display(self) -> None:
-        """Вывод параметров арифметической прогрессии"""
-        print(f"Арифметическая прогрессия: a0={self._a0}, d={self._d}")
+    def __str__(self) -> str:
+        """Строковое представление арифметической прогрессии"""
+        return f"Арифметическая прогрессия: a0={self._a0}, d={self._d}"
 
 
 class Exponential(Series):
@@ -125,20 +122,17 @@ class Exponential(Series):
         a_n = self.get_element(n)
         return (self._a0 - a_n * self._r) / (1 - self._r)
 
-    def read(self, prompt: str = "") -> None:
-        """Ввод параметров геометрической прогрессии"""
-        if prompt:
-            print(prompt)
-
+    def edit(self) -> None:
+        """Редактирование параметров геометрической прогрессии"""
         try:
             self._a0 = float(input("Введите первый элемент a0: "))
             self._r = float(input("Введите знаменатель r: "))
         except ValueError:
             raise ValueError("Некорректный ввод. Ожидаются числа.")
 
-    def display(self) -> None:
-        """Вывод параметров геометрической прогрессии"""
-        print(f"Геометрическая прогрессия: a0={self._a0}, r={self._r}")
+    def __str__(self) -> str:
+        """Строковое представление геометрической прогрессии"""
+        return f"Геометрическая прогрессия: a0={self._a0}, r={self._r}"
 
 
 def demonstrate_virtual_call(series: Series, j: int, n: int) -> None:
@@ -150,7 +144,7 @@ def demonstrate_virtual_call(series: Series, j: int, n: int) -> None:
     print("Демонстрация виртуального вызова:")
     print("=" * 50)
 
-    series.display()
+    print(series)  # Используем __str__ для вывода
     print(f"Элемент с индексом {j}: {series.get_element(j)}")
     print(f"Сумма первых {n+1} элементов: {series.get_sum(n)}")
 
