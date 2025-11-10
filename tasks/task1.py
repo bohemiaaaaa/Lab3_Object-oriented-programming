@@ -15,7 +15,7 @@ def main() -> None:
     print("-" * 30)
 
     triad1: Triad = Triad(10, 20, 30)
-    print(f"Создан: {triad1}")
+    print(triad1)
 
     triad1.increase_a()
     print(f"После увеличения A: {triad1}")
@@ -34,7 +34,7 @@ def main() -> None:
     print("-" * 30)
 
     date1: Date = Date(2023, 12, 31)
-    print(f"Создана дата: {date1}")
+    print(date1)
 
     date1.increase_day()
     print(f"После увеличения дня: {date1}")
@@ -68,7 +68,6 @@ def main() -> None:
 
     for obj in objects:
         print(f"\nОбъект: {obj}")
-        obj.display()
         obj.increase_a()
         print(f"После увеличения первого поля: {obj}")
         obj.increase_b()
@@ -76,39 +75,23 @@ def main() -> None:
         obj.increase_c()
         print(f"После увеличения третьего поля: {obj}")
 
-    # Тестирование сеттеров и свойств
-    print("\n5. Тестирование свойств:")
+    # Тестирование edit метода
+    print("\n5. Тестирование метода edit:")
     print("-" * 25)
 
-    date_test: Date = Date(2023, 5, 10)
-    print(f"Исходная дата: {date_test}")
-    print(f"Год: {date_test.year}")
-    print(f"Месяц: {date_test.month}")
-    print(f"День: {date_test.day}")
-
-    date_test.year = 2024
-    date_test.month = 12
-    date_test.day = 25
-    print(f"После изменения через свойства: {date_test}")
-
-    # Тестирование обработки ошибок
-    print("\n6. Тестирование обработки ошибок:")
-    print("-" * 35)
-
     try:
-        Date(2023, 13, 1)  # Неверный месяц
-    except ValueError as e:
-        print(f"Ошибка при создании даты: {e}")
+        triad_edit = Triad()
+        print("Создан пустой Triad")
+        triad_edit.edit()
+        print(f"После редактирования: {triad_edit}")
 
-    try:
-        valid_date: Date = Date(2023, 12, 31)
-        valid_date.day = 32  # Неверный день
-    except ValueError as e:
-        print(f"Ошибка при установке дня: {e}")
+        date_edit = Date()
+        print("\nСоздана пустая Date")
+        date_edit.edit()
+        print(f"После редактирования: {date_edit}")
 
-    print("\n" + "=" * 50)
-    print("Демонстрация завершена!")
-    print("=" * 50)
+    except ValueError as e:
+        print(f"Ошибка ввода: {e}")
 
 
 if __name__ == "__main__":

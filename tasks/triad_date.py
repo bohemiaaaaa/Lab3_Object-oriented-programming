@@ -54,12 +54,17 @@ class Triad:
         self.increase_b()
         self.increase_c()
 
-    def display(self) -> None:
-        """Вывести значения полей"""
-        print(f"Triad: A={self._a}, B={self._b}, C={self._c}")
+    def edit(self) -> None:
+        """Редактирование параметров через консоль"""
+        try:
+            self._a = int(input("Введите значение A: "))
+            self._b = int(input("Введите значение B: "))
+            self._c = int(input("Введите значение C: "))
+        except ValueError:
+            raise ValueError("Некорректный ввод. Ожидаются целые числа.")
 
     def __str__(self) -> str:
-        return f"Triad({self._a}, {self._b}, {self._c})"
+        return f"Triad: A={self._a}, B={self._b}, C={self._c}"
 
 
 class Date(Triad):
@@ -161,9 +166,20 @@ class Date(Triad):
         for _ in range(days):
             self.increase_day()
 
-    def display(self) -> None:
-        """Вывести дату"""
-        print(f"Date: {self._c:02d}.{self._b:02d}.{self._a}")
+    def edit(self) -> None:
+        """Редактирование даты через консоль"""
+        try:
+            year = int(input("Введите год: "))
+            month = int(input("Введите месяц: "))
+            day = int(input("Введите день: "))
+
+            # Устанавливаем значения через свойства для валидации
+            self.year = year
+            self.month = month
+            self.day = day
+
+        except ValueError:
+            raise ValueError("Некорректный ввод. Ожидаются целые числа.")
 
     def __str__(self) -> str:
-        return f"Date({self._c:02d}.{self._b:02d}.{self._a})"
+        return f"Date: {self._c:02d}.{self._b:02d}.{self._a}"
