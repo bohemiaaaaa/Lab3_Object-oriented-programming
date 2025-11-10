@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*
 
+
 class Rational:
 
     def __init__(self, a=0, b=1):
@@ -45,7 +46,7 @@ class Rational:
     # как a/b.
     def read(self, prompt=None):
         line = input() if prompt is None else input(prompt)
-        parts = list(map(int, line.split('/', maxsplit=1)))
+        parts = list(map(int, line.split("/", maxsplit=1)))
         if parts[1] == 0:
             raise ValueError()
         self.__numerator = abs(parts[0])
@@ -60,8 +61,7 @@ class Rational:
     # Сложение обыкновенных дробей.
     def add(self, rhs):
         if isinstance(rhs, Rational):
-            a = self.numerator * rhs.denominator + \
-                self.denominator * rhs.numerator
+            a = self.numerator * rhs.denominator + self.denominator * rhs.numerator
             b = self.denominator * rhs.denominator
 
             return Rational(a, b)
@@ -71,8 +71,7 @@ class Rational:
     # Вычитание обыкновенных дробей.
     def sub(self, rhs):
         if isinstance(rhs, Rational):
-            a = self.numerator * rhs.denominator - \
-                self.denominator * rhs.numerator
+            a = self.numerator * rhs.denominator - self.denominator * rhs.numerator
             b = self.denominator * rhs.denominator
 
             return Rational(a, b)
@@ -102,8 +101,9 @@ class Rational:
     # Отношение обыкновенных дробей.
     def equals(self, rhs):
         if isinstance(rhs, Rational):
-            return (self.numerator == rhs.numerator) and \
-                (self.denominator == rhs.denominator)
+            return (self.numerator == rhs.numerator) and (
+                self.denominator == rhs.denominator
+            )
         else:
             return False
 
@@ -125,7 +125,8 @@ class Rational:
         else:
             return False
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     r1 = Rational(3, 4)
     r1.display()
 
