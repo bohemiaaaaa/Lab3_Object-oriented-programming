@@ -87,10 +87,6 @@ def main() -> None:
         print(f"  S_3 = {progression.get_sum(3):.2f}")
         print()
 
-    print("\n" + "=" * 60)
-    print("Демонстрация завершена!")
-    print("=" * 60)
-
 
 if __name__ == "__main__":
     main()
