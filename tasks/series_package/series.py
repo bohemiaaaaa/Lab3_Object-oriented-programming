@@ -5,17 +5,20 @@ from abc import ABC, abstractmethod
 
 
 class SeriesReader:
-    @staticmethod
-    def read_linear_params():
-        a0 = float(input("Введите первый элемент a0: "))
-        d = float(input("Введите разность d: "))
-        return a0, d
+    def __init__(self):
+        self.a0 = 0.0
+        self.d = 0.0
+        self.r = 0.0
 
-    @staticmethod
-    def read_exponential_params():
-        a0 = float(input("Введите первый элемент a0: "))
-        r = float(input("Введите знаменатель r: "))
-        return a0, r
+    def read_linear(self):
+        self.a0 = float(input("Введите первый элемент a0: "))
+        self.d = float(input("Введите разность d: "))
+        return Linear(self.a0, self.d)
+
+    def read_exponential(self):
+        self.a0 = float(input("Введите первый элемент a0: "))
+        self.r = float(input("Введите знаменатель r: "))
+        return Exponential(self.a0, self.r)
 
 
 class Series(ABC):

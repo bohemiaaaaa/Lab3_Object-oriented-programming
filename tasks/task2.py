@@ -63,9 +63,9 @@ def main():
     print("-" * 50)
 
     try:
-        print("Ввод параметров арифметической прогрессии:")
-        a0, d = SeriesReader.read_linear_params()
-        linear_input = Linear(a0, d)
+        reader = SeriesReader()
+        print("Создание арифметической прогрессии:")
+        linear_input = reader.read_linear()
         print(f"Создана арифметическая прогрессия: {linear_input}")
 
         print(f"a_5 = {linear_input.get_element(5)}")
