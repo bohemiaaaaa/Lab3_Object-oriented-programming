@@ -64,12 +64,18 @@ def main():
 
     try:
         reader = SeriesReader()
+
         print("Создание арифметической прогрессии:")
         linear_input = reader.read_linear()
         print(f"Создана арифметическая прогрессия: {linear_input}")
-
         print(f"a_5 = {linear_input.get_element(5)}")
         print(f"S_5 = {linear_input.get_sum(5)}")
+
+        print("\nСоздание геометрической прогрессии:")
+        exponential_input = reader.read_exponential()
+        print(f"Создана геометрическая прогрессия: {exponential_input}")
+        print(f"a_5 = {exponential_input.get_element(5)}")
+        print(f"S_5 = {exponential_input.get_sum(5)}")
 
     except ValueError as e:
         print(f"Ошибка ввода: {e}")
