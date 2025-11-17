@@ -1,5 +1,7 @@
 {
     "python.analysis.extraPaths": [
         "./tasks"
-    ]
+    ],
+    "editor.copyWithSyntaxHighlighting": false,
+    "terminal.integrated.copyOnSelection": true
 }

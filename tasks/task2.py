@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from series_package.series import Exponential, Linear, Series, demonstrate_virtual_call
+from series_package.series import Exponential, Linear, demonstrate_virtual_call
 
 
-def main() -> None:
-    """Основная функция демонстрации"""
+def main():
     print("=" * 60)
     print("Демонстрация абстрактных классов Series")
     print("Арифметическая и геометрическая прогрессии")
@@ -15,7 +14,7 @@ def main() -> None:
     print("\n1. Арифметическая прогрессия (Linear):")
     print("-" * 40)
 
-    linear = Linear(2.0, 3.0)  # a0=2, d=3
+    linear = Linear(2.0, 3.0)
     print(linear)
 
     print("Элементы прогрессии:")
@@ -30,7 +29,7 @@ def main() -> None:
     print("\n2. Геометрическая прогрессия (Exponential):")
     print("-" * 40)
 
-    exponential = Exponential(2.0, 3.0)  # a0=2, r=3
+    exponential = Exponential(2.0, 3.0)
     print(exponential)
 
     print("Элементы прогрессии:")
@@ -45,10 +44,9 @@ def main() -> None:
     print("\n3. Демонстрация виртуальных вызовов:")
     print("-" * 40)
 
-    # Создаем список объектов базового класса Series
-    series_list: list[Series] = [
-        Linear(1.0, 2.0),  # a0=1, d=2
-        Exponential(1.0, 2.0),  # a0=1, r=2
+    series_list = [
+        Linear(1.0, 2.0),
+        Exponential(1.0, 2.0),
     ]
 
     for i, series in enumerate(series_list, 1):
@@ -75,7 +73,7 @@ def main() -> None:
     print("\n5. Демонстрация полиморфизма:")
     print("-" * 40)
 
-    progressions: list[Series] = [
+    progressions = [
         Linear(5.0, 2.0),
         Exponential(5.0, 2.0),
         Linear(10.0, -1.0),
@@ -87,10 +85,6 @@ def main() -> None:
         print(f"  a_3 = {progression.get_element(3):.2f}")
         print(f"  S_3 = {progression.get_sum(3):.2f}")
         print()
-
-    print("\n" + "=" * 60)
-    print("Демонстрация завершена!")
-    print("=" * 60)
 
 
 if __name__ == "__main__":
