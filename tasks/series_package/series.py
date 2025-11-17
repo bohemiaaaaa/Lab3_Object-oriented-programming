@@ -4,6 +4,20 @@
 from abc import ABC, abstractmethod
 
 
+class SeriesReader:
+    @staticmethod
+    def read_linear_params():
+        a0 = float(input("Введите первый элемент a0: "))
+        d = float(input("Введите разность d: "))
+        return a0, d
+
+    @staticmethod
+    def read_exponential_params():
+        a0 = float(input("Введите первый элемент a0: "))
+        r = float(input("Введите знаменатель r: "))
+        return a0, r
+
+
 class Series(ABC):
     def __init__(self, first_element: float = 0.0) -> None:
         self._a0 = first_element
@@ -22,10 +36,6 @@ class Series(ABC):
 
     @abstractmethod
     def get_sum(self, n: int) -> float:
-        pass
-
-    @abstractmethod
-    def edit(self) -> None:
         pass
 
     @abstractmethod
@@ -58,13 +68,6 @@ class Linear(Series):
         a_n = self.get_element(n)
         return (n + 1) * (self._a0 + a_n) / 2
 
-    def edit(self) -> None:
-        try:
-            self._a0 = float(input("Введите первый элемент a0: "))
-            self._d = float(input("Введите разность d: "))
-        except ValueError:
-            raise ValueError("Некорректный ввод. Ожидаются числа.")
-
     def __str__(self) -> str:
         return f"Арифметическая прогрессия: a0={self._a0}, d={self._d}"
 
@@ -95,13 +98,6 @@ class Exponential(Series):
 
         a_n = self.get_element(n)
         return (self._a0 - a_n * self._r) / (1 - self._r)
-
-    def edit(self) -> None:
-        try:
-            self._a0 = float(input("Введите первый элемент a0: "))
-            self._r = float(input("Введите знаменатель r: "))
-        except ValueError:
-            raise ValueError("Некорректный ввод. Ожидаются числа.")
 
     def __str__(self) -> str:
         return f"Геометрическая прогрессия: a0={self._a0}, r={self._r}"

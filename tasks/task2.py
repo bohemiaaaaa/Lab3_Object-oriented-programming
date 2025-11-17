@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from series_package.series import Exponential, Linear, demonstrate_virtual_call
+from series_package.series import (
+    Exponential,
+    Linear,
+    SeriesReader,
+    demonstrate_virtual_call,
+)
 
 
 def main():
@@ -53,15 +58,15 @@ def main():
         print(f"Прогрессия {i}:")
         demonstrate_virtual_call(series, j=3, n=4)
 
-    # Демонстрация ввода с клавиатуры через edit
-    print("\n4. Демонстрация ввода с клавиатуры через метод edit:")
+    # Демонстрация ввода с клавиатуры через SeriesReader
+    print("\n4. Демонстрация ввода с клавиатуры через SeriesReader:")
     print("-" * 50)
 
     try:
-        linear_input = Linear()
-        print("Создана пустая арифметическая прогрессия")
-        linear_input.edit()
-        print(f"После редактирования: {linear_input}")
+        print("Ввод параметров арифметической прогрессии:")
+        a0, d = SeriesReader.read_linear_params()
+        linear_input = Linear(a0, d)
+        print(f"Создана арифметическая прогрессия: {linear_input}")
 
         print(f"a_5 = {linear_input.get_element(5)}")
         print(f"S_5 = {linear_input.get_sum(5)}")
